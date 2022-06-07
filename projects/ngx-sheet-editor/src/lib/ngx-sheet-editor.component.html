@@ -1,8 +1,11 @@
 <div>
-    <h2>My People</h2>
-    <ul>
-        <li>
-            <label>hola</label>
-        </li>
-    </ul>
+    <h2>People Form</h2>
+    <form [formGroup]="objectForm">
+        <input formControlName="name">
+        <!--<div formGroupName="params">
+            <div *ngFor="let control of objectForm.get('params');let i=index">
+                <input [formControl]="control">
+            </div>
+        </div>-->
+      </form>
 </div>

@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSheetEditorComponent } from './ngx-sheet-editor.component';
 
 
@@ -8,6 +10,8 @@ import { NgxSheetEditorComponent } from './ngx-sheet-editor.component';
     NgxSheetEditorComponent
   ],
   imports: [
+    ReactiveFormsModule,
+    CommonModule
   ],
   exports: [
     NgxSheetEditorComponent
