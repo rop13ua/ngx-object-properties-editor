@@ -12,6 +12,7 @@ export class NgxSheetEditorComponent implements OnInit {
   @Input() object: any;
 
   myObject:any = new Object();
+  readonly firstForm : string = "params"
   
   constructor(public fb: FormBuilder) { }
 
@@ -54,55 +55,24 @@ export class NgxSheetEditorComponent implements OnInit {
     else {return undefined}
   }
 
-  getForm(keys: string[], obj: any, lastForm: FormGroup, isSubElement?: boolean, lastKey?: string) {
-    debugger
-    
-    class ObjectSubproperty{
-      key: string = "";
-      value: Array<{key: string, subvalue: string}> = new Array<{key: string, subvalue: string}>();
-      formName : string = "";
-      form: FormGroup | undefined;
-    }
-    
-    var objectSubproperty: ObjectSubproperty = new ObjectSubproperty()
-
-    if(isSubElement && lastKey != undefined){
-      objectSubproperty.key = lastKey;
-    }
-
+  getForm(keys: string[], obj: any, lastKey: string, lastForm: FormGroup) {
     keys.forEach(key => {
       var property = obj[key]
       
       if (typeof property === "object"){
-        var result: any
-        lastForm.addControl(key,new FormControl())
-        result = this.getProperties(Object.keys(property), property, true, key)
-        if(result != undefined){
-          Object.defineProperty(this.myObject, result.key, {value: result.value});
-          var size = Object.keys((this.objectForm.get(result.formName) as FormGroup).controls)
-          for(var i=0; i < size.length ; i++) 
-            (this.objectForm.get(result.formName) as FormGroup).addControl(result.key,new FormControl());
-        }
+        var last = (lastForm.get(lastKey) as FormGroup);
+        last.addControl(key,this.fb.group({}));
+        this.getForm(Object.keys(property), property, key, last)
       } else {
-        if(isSubElement){
-          objectSubproperty.value.push({key: key, subvalue: property})
-          objectSubproperty.formName = key;
-          (this.objectForm.get(key) as FormGroup).addControl(property,new FormControl());
-        }
-        else{
-          Object.defineProperty(this.myObject, key, {value: property});
-          (this.objectForm.get("params") as FormGroup).addControl(key,new FormControl());
-        }
+        (lastForm.get(lastKey) as FormGroup).addControl(key,new FormControl());
       }
     })
-
-    if(isSubElement) { return objectSubproperty}
-    else {return undefined}
   }
 
   ngOnInit(): void { 
     this.getProperties(Object.keys(this.object), this.object, false) 
     console.log(this.myObject)
+    this.getForm(Object.keys(this.object), this.object, this.firstForm, this.objectForm)
     console.log(this.objectForm)
   }
 
