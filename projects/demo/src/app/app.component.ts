@@ -15,9 +15,8 @@ export class AppComponent implements OnInit{
   title = 'demo';
 
   ngOnInit(): void {
-    var prueba = {Persona: {Nombre:"Raquel", Apellidos: {Ap1: "Ortega", Ap2: "Perez"}}, Edad: 12, DNI:"50384811E"}
-    this.people = prueba
-    //this.people = "hola"
+    var prueba = {Persona: {Nombre:"Raquel", Apellidos: {Ap1: "Ortega", Ap2: "Perez"}}, Edad: 12, DNI:"50384811E", Bloqueado: false}
+    this.people = HOUSE[1]
     this.houses = HOUSE
   }
 }

@@ -1,0 +1,56 @@
+label {
+    font-weight: bold;
+    color: #103339;
+}
+
+input[type='text'],[type='number'] {
+    margin-bottom: 8px;
+    padding: 3px;
+    width: 15%;
+    border: solid 1px #5ecabc;
+}
+
+input[type='radio']{
+    margin-left: 5px;
+}
+
+button{
+    margin-top: 20px;
+    background-color: white;
+    border: solid 1.7px #103339;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #103339;
+    padding: 10px;
+}
+
+button:hover {
+    margin-top: 20px;
+    background-color: #103339;
+    border: solid 1.7px #103339;;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    padding: 10px;
+    
+}
+
+button:active {
+    box-shadow: 0 0 0 3px rgb(161, 161, 161);
+}
+
+h2 {
+    color: #103339;
+}
+
+.radio_label{
+    font-weight: normal;
+    color:black;
+}
+
+.radio_container{
+    margin-left: 5px;
+    margin-top: 5px;
+}

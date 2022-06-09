@@ -1,5 +1,5 @@
 import { Component,Input, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ObjectSubproperty } from './model/models';
 
 @Component({
@@ -12,8 +12,10 @@ export class NgxSheetEditorComponent implements OnInit {
   @Input() object: any;
 
   myObject:any = new Object();
+  mySimpleObject:any = new Object();
   readonly firstForm : string = "params"
-  
+  subelements : number = 0
+
   constructor(public fb: FormBuilder) { }
 
   objectForm = this.fb.group({
@@ -21,7 +23,22 @@ export class NgxSheetEditorComponent implements OnInit {
     params: this.fb.group({})
   });
 
-  getProperties(keys: string[], obj: any, isSubElement?: boolean, lastKey?: string) {   
+  simpleForm: FormGroup = this.fb.group({});
+
+  getArrayOfControls() {
+    return (this.objectForm.get('params') as FormArray).controls;
+  }
+
+  getControl(control: any){
+    return control as FormControl;
+  }
+
+  getValue(key: any){
+    console.log(this.mySimpleObject[key])
+    return this.mySimpleObject[key];
+  }
+
+  getComplexProperties(keys: string[], obj: any, isSubElement?: boolean, lastKey?: string) {   
     
     // Asignamos nombre de propiedad interna en caso de serlo
     var objectSubproperty: ObjectSubproperty = new ObjectSubproperty()
@@ -34,8 +51,9 @@ export class NgxSheetEditorComponent implements OnInit {
       var property = obj[key] // Obtener la propiedad por su clave
       
       if (typeof property === "object") { // Si es objeto, recorremos el objeto para extraer las propiedades
-        var result : any = this.getProperties(Object.keys(property), property, true, key)
-        
+        var result : any = this.getComplexProperties(Object.keys(property), property, true, key)
+        this.subelements = this.subelements + 1;
+
         if(result != undefined){
           if(isSubElement && lastKey!=undefined)
             objectSubproperty.value.push({key: result.key, subvalue: result.value})
@@ -55,25 +73,75 @@ export class NgxSheetEditorComponent implements OnInit {
     else {return undefined}
   }
 
-  getForm(keys: string[], obj: any, lastKey: string, lastForm: FormGroup) {
+  getComplexForm(keys: string[], obj: any, lastKey: string, lastForm: FormGroup) {
     keys.forEach(key => {
       var property = obj[key]
       
       if (typeof property === "object"){
         var last = (lastForm.get(lastKey) as FormGroup);
         last.addControl(key,this.fb.group({}));
-        this.getForm(Object.keys(property), property, key, last)
+        this.getComplexForm(Object.keys(property), property, key, last)
       } else {
         (lastForm.get(lastKey) as FormGroup).addControl(key,new FormControl());
       }
     })
   }
 
+  getSimpleForm(keys: string[], obj: any, group: any){
+    //debugger;
+    
+    keys.forEach(key => {
+      var property = obj[key]
+      
+      if (typeof property === "object"){
+        this.getSimpleForm(Object.keys(property), property, group)
+      } else {
+        group[key] = new FormControl(this.mySimpleObject[key])
+      }
+    })
+
+    this.simpleForm = this.fb.group(group)
+  }
+
+  getType(key: any){
+    return typeof this.mySimpleObject[key];
+  }
+
+  getElems(){
+    return Object.getOwnPropertyNames(this.mySimpleObject)
+  }
+
+  getSimpleProperties(keys: string[], obj: any) {   
+    
+    keys.forEach(key => {
+      var property = obj[key]
+      
+      if (typeof property === "object"){
+        this.getSimpleProperties(Object.keys(property), property)
+      } else {
+        Object.defineProperty(this.mySimpleObject, key, {value: property});
+      }
+    })
+  }
+
+  loadProperties(){
+    this.getComplexProperties(Object.keys(this.object), this.object, false) 
+    
+    this.getComplexForm(Object.keys(this.object), this.object, this.firstForm, this.objectForm)
+
+    this.getSimpleProperties(Object.keys(this.object), this.object) 
+    console.log(this.mySimpleObject)
+
+    var group :{[key: string]: any} = {}
+    this.getSimpleForm(Object.keys(this.object), this.object, group)
+  }
+
   ngOnInit(): void { 
-    this.getProperties(Object.keys(this.object), this.object, false) 
-    console.log(this.myObject)
-    this.getForm(Object.keys(this.object), this.object, this.firstForm, this.objectForm)
-    console.log(this.objectForm)
+    this.loadProperties()
+  }
+
+  onSubmit(){
+    //do smth
   }
 
 }

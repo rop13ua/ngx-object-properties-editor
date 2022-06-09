@@ -1,11 +1,27 @@
-<div>
-    <h2>People Form</h2>
-    <form [formGroup]="objectForm">
-        <input formControlName="name">
-        <!--<div formGroupName="params">
-            <div *ngFor="let control of objectForm.get('params');let i=index">
-                <input [formControl]="control">
-            </div>
-        </div>-->
+<div class="">
+    <h2>EDIT PROPERTIES</h2>
+    <form [formGroup]="simpleForm" (ngSubmit)="onSubmit()">
+        <div *ngFor="let form_elem of getElems()">
+            <label>{{form_elem}}:</label>
+            <div [ngSwitch]="getType(form_elem)">
+                <div *ngSwitchCase="'string'">
+                    <input type="text" formControlName="{{form_elem}}"/>
+                </div>
+                <div *ngSwitchCase="'number'">
+                    <input type="number" formControlName="{{form_elem}}"/>
+                </div>
+                <div *ngSwitchCase="'boolean'">
+                    <div class="radio_container">
+                        <input type="radio" id="{{form_elem}}True" formControlName="{{form_elem}}" name="{{form_elem}}" value="true">
+                        <label class="radio_label">True</label>
+                    </div>
+                    <div class="radio_container">
+                        <input type="radio" id="{{form_elem}}False" formControlName="{{form_elem}}" name="{{form_elem}}" value="false"/>
+                        <label class="radio_label">False</label>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <button type="submit">Guardar</button>
       </form>
 </div>
