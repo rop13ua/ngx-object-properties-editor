@@ -11,6 +11,7 @@ import { ObjectSubproperty } from './model/models';
 export class NgxSheetEditorComponent implements OnInit {
   @Input() object: Object | undefined;
   @Input() labels: Map<string, string> | undefined;
+  @Input() selects: Map<string,any> | undefined;
 
   myObject:any = new Object();
   mySimpleObject:any = new Object();
@@ -35,7 +36,6 @@ export class NgxSheetEditorComponent implements OnInit {
   }
 
   getValue(key: any){
-    console.log(this.mySimpleObject[key])
     return this.mySimpleObject[key];
   }
   
@@ -45,6 +45,37 @@ export class NgxSheetEditorComponent implements OnInit {
 
   getElems(){
     return Object.getOwnPropertyNames(this.mySimpleObject)
+  }
+
+  getEnum(key: any){
+    if(this.selects != undefined){
+      var enumValues = Object.keys(this.selects.get(key))
+      return enumValues.slice(enumValues.length/2)
+    }
+    else  {
+      return null
+    }
+  }
+
+  isEnum(key: any){
+    return (this.selects != undefined && this.selects.get(key) != undefined)
+  }
+
+  isSmall(key: any){
+    var size: number = 0;
+    if(this.selects != undefined)
+      size = Object.keys(this.selects.get(key)).length
+
+    //console.log(size)
+    return (this.selects != undefined && size/2 < 5)
+  }
+
+  getNumericValue(key:any, select:any){
+    if(this.selects != undefined){
+      return this.selects.get(select)[key]
+    }
+
+    return undefined
   }
 
   getLabel(key: string){

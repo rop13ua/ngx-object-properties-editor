@@ -4,7 +4,6 @@ label {
 }
 
 input[type='text'],[type='number'] {
-    margin-bottom: 8px;
     padding: 3px;
     width: 15%;
     border: solid 1px #5ecabc;
@@ -15,7 +14,7 @@ input[type='radio']{
 }
 
 button{
-    margin-top: 20px;
+    margin: 10px;
     background-color: white;
     border: solid 1.7px #103339;
     border-radius: 4px;
@@ -26,7 +25,7 @@ button{
 }
 
 button:hover {
-    margin-top: 20px;
+    margin: 10px;
     background-color: #103339;
     border: solid 1.7px #103339;;
     border-radius: 4px;
@@ -53,4 +52,8 @@ h2 {
 .radio_container{
     margin-left: 5px;
     margin-top: 5px;
+}
+
+.input_container{
+    margin: 10px;
 }
