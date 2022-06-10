@@ -2,7 +2,7 @@
     <h2>EDIT PROPERTIES</h2>
     <form [formGroup]="simpleForm" (ngSubmit)="onSubmit()">
         <div *ngFor="let form_elem of getElems()">
-            <label>{{form_elem}}:</label>
+            <label>{{getLabel(form_elem)}}:</label>
             <div [ngSwitch]="getType(form_elem)">
                 <div *ngSwitchCase="'string'">
                     <input type="text" formControlName="{{form_elem}}"/>
