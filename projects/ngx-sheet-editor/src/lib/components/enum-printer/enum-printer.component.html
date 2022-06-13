@@ -1,0 +1,11 @@
+<div *ngIf="isSmall()" class="radio_container">
+    <div *ngFor="let value of getEnum()">
+        <input type="radio" id="{{getNumericValue(value)}}" formControlName="{{form_elem}}" name="{{form_elem}}" value="{{value}}"/>
+        <label class="radio_label">{{value}}</label>
+    </div>
+</div>
+<div *ngIf="!isSmall()">
+    <select formControlName="{{form_elem}}" name="select">
+        <option *ngFor="let value of getEnum()" value="{{getNumericValue(value)}}">{{value}}</option>
+    </select>
+</div>
