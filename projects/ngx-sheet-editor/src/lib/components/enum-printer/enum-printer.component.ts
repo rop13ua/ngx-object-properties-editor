@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import { ControlContainer, FormControl, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'lib-enum-printer',
@@ -11,14 +11,16 @@ export class EnumPrinterComponent implements OnInit {
 @Input() form_elem: string | undefined
 @Input() select: string[] | undefined
 
-childForm: any
-constructor(private parentF: FormGroupDirective, private cc: ControlContainer) { }
+public formControl:  FormControl = new FormControl();
+constructor(private formGroupDirective: FormGroupDirective, private cc: ControlContainer) { }
 
   names: string[] = [];
   small: boolean = false;
 
   ngOnInit(): void {
-    this.childForm = this.parentF.form;
+    if(this.form_elem != undefined){
+      this.formControl = this.formGroupDirective.form.get(this.form_elem) as FormControl;
+    }
 
     if(this.select != undefined){
       this.names = this.select.slice(this.select.length/2)
@@ -31,7 +33,7 @@ constructor(private parentF: FormGroupDirective, private cc: ControlContainer) {
   }
 
   isChecked(value: any){
-    var res =this.childForm.get(this.form_elem).value == this.getNumericValue(value)
+    var res =this.formControl.value == this.getNumericValue(value)
     console.log(res) 
     return res;
   }

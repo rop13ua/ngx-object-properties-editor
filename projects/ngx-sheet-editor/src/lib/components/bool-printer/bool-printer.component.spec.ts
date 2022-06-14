@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ControlContainer, FormBuilder, FormControlDirective, FormGroup, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 
 import { BoolPrinterComponent } from './bool-printer.component';
 
@@ -7,8 +8,21 @@ describe('BoolPrinterComponent', () => {
   let fixture: ComponentFixture<BoolPrinterComponent>;
 
   beforeEach(async () => {
+    const fb = new FormBuilder()
+
+    const formGroupDirective = new FormGroupDirective([], []);
+    formGroupDirective.form = fb.group({
+      test: fb.control(null)
+    });
+
     await TestBed.configureTestingModule({
-      declarations: [ BoolPrinterComponent ]
+      imports:[ReactiveFormsModule],
+      declarations: [ BoolPrinterComponent],
+      providers: [
+        FormGroupDirective,
+        FormBuilder,
+        {provide: FormGroupDirective, useValue: formGroupDirective}
+      ]
     })
     .compileComponents();
   });
@@ -16,6 +30,7 @@ describe('BoolPrinterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BoolPrinterComponent);
     component = fixture.componentInstance;
+    component.form_elem = "test";
     fixture.detectChanges();
   });
 
