@@ -1,5 +1,5 @@
 <div class="">
-    <h2>EDIT PROPERTIES</h2>
+    <h2 *ngIf="title != undefined">{{title}}</h2>
     <form [formGroup]="simpleForm" (ngSubmit)="onSubmit()">
         <div class="input_container" *ngFor="let form_elem of getElems()">
             <label>{{getLabel(form_elem)}}:</label>
@@ -9,27 +9,12 @@
                 </div>
                 <div *ngSwitchCase="'number'">
                     <input *ngIf="!isEnum(form_elem)" type="number" formControlName="{{form_elem}}"/>
-                    <div *ngIf="isEnum(form_elem) && isSmall(form_elem)" class="radio_container">
-                        <div *ngFor="let value of getEnum(form_elem)">
-                            <input type="radio" id="{{getNumericValue(value,form_elem)}}" formControlName="{{form_elem}}" name="{{form_elem}}" value="{{value}}"/>
-                            <label class="radio_label">{{value}}</label>
-                        </div>
-                    </div>
-                    <div *ngIf="isEnum(form_elem) && !isSmall(form_elem)">
-                        <select name="select">
-                            <option *ngFor="let value of getEnum(form_elem)" value="{{getNumericValue(value,form_elem)}}">{{value}}</option>
-                        </select>
+                    <div *ngIf="isEnum(form_elem)">
+                        <lib-enum-printer [form_elem]="form_elem" [select]="getSelect(form_elem)"></lib-enum-printer>
                     </div>
                 </div>
                 <div *ngSwitchCase="'boolean'">
-                    <div class="radio_container">
-                        <input type="radio" id="{{form_elem}}True" formControlName="{{form_elem}}" name="{{form_elem}}" value="true">
-                        <label class="radio_label">True</label>
-                    </div>
-                    <div class="radio_container">
-                        <input type="radio" id="{{form_elem}}False" formControlName="{{form_elem}}" name="{{form_elem}}" value="false"/>
-                        <label class="radio_label">False</label>
-                    </div>
+                    <lib-bool-printer form_elem="{{form_elem}}"></lib-bool-printer>
                 </div>
             </div>  
         </div>

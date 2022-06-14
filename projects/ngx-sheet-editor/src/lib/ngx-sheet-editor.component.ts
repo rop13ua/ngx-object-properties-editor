@@ -12,6 +12,7 @@ export class NgxSheetEditorComponent implements OnInit {
   @Input() object: Object | undefined;
   @Input() labels: Map<string, string> | undefined;
   @Input() selects: Map<string,any> | undefined;
+  @Input() title: string | undefined;
 
   myObject:any = new Object();
   mySimpleObject:any = new Object();
@@ -26,20 +27,8 @@ export class NgxSheetEditorComponent implements OnInit {
   });
 
   simpleForm: FormGroup = this.fb.group({});
-
-  getArrayOfControls() {
-    return (this.objectForm.get('params') as FormArray).controls;
-  }
-
-  getControl(control: any){
-    return control as FormControl;
-  }
-
-  getValue(key: any){
-    return this.mySimpleObject[key];
-  }
   
-  getType(key: any){
+  getType(key: string){
     return typeof this.mySimpleObject[key];
   }
 
@@ -47,35 +36,15 @@ export class NgxSheetEditorComponent implements OnInit {
     return Object.getOwnPropertyNames(this.mySimpleObject)
   }
 
-  getEnum(key: any){
+  getSelect(key: string) {
     if(this.selects != undefined){
-      var enumValues = Object.keys(this.selects.get(key))
-      return enumValues.slice(enumValues.length/2)
-    }
-    else  {
-      return null
-    }
+      return Object.keys(this.selects.get(key))
+    } 
+    return undefined 
   }
 
-  isEnum(key: any){
+  isEnum(key: string){
     return (this.selects != undefined && this.selects.get(key) != undefined)
-  }
-
-  isSmall(key: any){
-    var size: number = 0;
-    if(this.selects != undefined)
-      size = Object.keys(this.selects.get(key)).length
-
-    //console.log(size)
-    return (this.selects != undefined && size/2 < 5)
-  }
-
-  getNumericValue(key:any, select:any){
-    if(this.selects != undefined){
-      return this.selects.get(select)[key]
-    }
-
-    return undefined
   }
 
   getLabel(key: string){
@@ -134,12 +103,12 @@ export class NgxSheetEditorComponent implements OnInit {
     })
   }
 
-  getSimpleForm(keys: string[], obj: any, group: any){   
+  createSimpleForm(keys: string[], obj: any, group: {[key: string]: any}){   
     keys.forEach(key => {
       var property = obj[key]
       
       if (typeof property === "object"){
-        this.getSimpleForm(Object.keys(property), property, group)
+        this.createSimpleForm(Object.keys(property), property, group)
       } else {
         group[key] = new FormControl(this.mySimpleObject[key])
       }
@@ -148,13 +117,13 @@ export class NgxSheetEditorComponent implements OnInit {
     this.simpleForm = this.fb.group(group)
   }
 
-  getSimpleProperties(keys: string[], obj: any) {   
+  createSimpleProperties(keys: string[], obj: any) {   
     
     keys.forEach(key => {
       var property = obj[key]
       
       if (typeof property === "object"){
-        this.getSimpleProperties(Object.keys(property), property)
+        this.createSimpleProperties(Object.keys(property), property)
       } else {
         Object.defineProperty(this.mySimpleObject, key, {value: property});
       }
@@ -169,8 +138,8 @@ export class NgxSheetEditorComponent implements OnInit {
   
       // Objeto y formularios utilizados actualmente
       var group :{[key: string]: any} = {}
-      this.getSimpleProperties(Object.keys(this.object), this.object) 
-      this.getSimpleForm(Object.keys(this.object), this.object, group)
+      this.createSimpleProperties(Object.keys(this.object), this.object) 
+      this.createSimpleForm(Object.keys(this.object), this.object, group)
     }
   }
 
@@ -179,7 +148,9 @@ export class NgxSheetEditorComponent implements OnInit {
   }
 
   onSubmit(){
-    //do smth
+    Object.keys(this.simpleForm.getRawValue()).forEach((key) => {
+      console.log(this.simpleForm.controls[key].value)
+    });
   }
 
 }

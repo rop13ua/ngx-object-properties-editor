@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 
 @Component({
@@ -8,27 +8,32 @@ import { ControlContainer, FormGroupDirective } from '@angular/forms';
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class EnumPrinterComponent implements OnInit {
-@Input() form_elem: any
-@Input() select: any
+@Input() form_elem: string | undefined
+@Input() select: string[] | undefined
 
 childForm: any
-constructor(private parentF: FormGroupDirective) { }
+constructor(private parentF: FormGroupDirective, private cc: ControlContainer) { }
 
-  names: any;
-  values: any;
+  names: string[] = [];
+  small: boolean = false;
 
   ngOnInit(): void {
     this.childForm = this.parentF.form;
 
     if(this.select != undefined){
       this.names = this.select.slice(this.select.length/2)
-      this.values = this.select.slice(0, this.select.length/2)
     }
   }
 
-
   isSmall(){
+    this.small = (this.select != undefined && this.names.length < 5)
     return (this.select != undefined && this.names.length < 5)
+  }
+
+  isChecked(value: any){
+    var res =this.childForm.get(this.form_elem).value == this.getNumericValue(value)
+    console.log(res) 
+    return res;
   }
 
   getEnum(){

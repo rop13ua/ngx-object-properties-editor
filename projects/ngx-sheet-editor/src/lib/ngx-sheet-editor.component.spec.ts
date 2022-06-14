@@ -22,4 +22,12 @@ describe('NgxSheetEditorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render label', () => {
+    const fixture = TestBed.createComponent(NgxSheetEditorComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('label')?.textContent).toContain('Nombre:');
+  });
+
 });

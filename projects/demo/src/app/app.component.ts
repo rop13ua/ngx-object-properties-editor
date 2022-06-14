@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
     
     this.enums = new Map().set("Posicion",posicion).set("Equipo", equiposEnum)
 
-    this.enumPrueba = {Jugador: {Nombre:"Victor", Apellido: "Lirola"}, Posicion: posicion.ADC, Equipo: equiposEnum.G2}
+    this.enumPrueba = {Jugador: {Nombre:"Victor", Apellido: "Lirola"}, Posicion: posicion.ADC, Equipo: equiposEnum.G2, Activo: false}
 
     this.lab = new Map().set("id", "Número ID")
                           .set("doors", "Puertas")

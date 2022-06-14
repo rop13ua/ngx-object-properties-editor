@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import { ControlContainer, FormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'lib-bool-printer',
@@ -8,10 +8,9 @@ import { ControlContainer, FormGroupDirective } from '@angular/forms';
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class BoolPrinterComponent implements OnInit {
-@Input() form_elem: any
+@Input() form_elem: string | undefined
 
   constructor(private parentF: FormGroupDirective) { }
-
   childForm: any;
   
   ngOnInit(): void {
