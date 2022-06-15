@@ -8,14 +8,13 @@ import { ControlContainer, FormControl, FormGroupDirective } from '@angular/form
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class EnumPrinterComponent implements OnInit {
-@Input() form_elem: string | undefined
-@Input() select: string[] | undefined
+  @Input() form_elem: string | undefined
+  @Input() select: string[] | undefined
 
-public formControl:  FormControl = new FormControl();
-constructor(private formGroupDirective: FormGroupDirective, private cc: ControlContainer) { }
+  private names: string[] = [];
+  formControl:  FormControl = new FormControl();
 
-  names: string[] = [];
-  small: boolean = false;
+  constructor(private formGroupDirective: FormGroupDirective) { }
 
   ngOnInit(): void {
     if(this.form_elem != undefined){
@@ -28,14 +27,7 @@ constructor(private formGroupDirective: FormGroupDirective, private cc: ControlC
   }
 
   isSmall(){
-    this.small = (this.select != undefined && this.names.length < 5)
     return (this.select != undefined && this.names.length < 5)
-  }
-
-  isChecked(value: any){
-    var res =this.formControl.value == this.getNumericValue(value)
-    console.log(res) 
-    return res;
   }
 
   getEnum(){

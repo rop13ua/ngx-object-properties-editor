@@ -11,7 +11,7 @@ export class BoolPrinterComponent implements OnInit {
 @Input() form_elem: string | undefined
 
   constructor(private formGroupDirective: FormGroupDirective) { }
-  public formControl:  FormControl = new FormControl();
+  formControl:  FormControl = new FormControl();
   
   ngOnInit(): void {
     if(this.form_elem != undefined){

@@ -1,6 +1,6 @@
 <div class="">
     <h2 *ngIf="title != undefined">{{title}}</h2>
-    <form [formGroup]="simpleForm" (ngSubmit)="onSubmit()">
+    <form id="dynamicForm" [formGroup]="simpleForm" (ngSubmit)="onSubmit()">
         <div class="input_container" *ngFor="let form_elem of getElems()">
             <label>{{getLabel(form_elem)}}:</label>
             <div [ngSwitch]="getType(form_elem)">

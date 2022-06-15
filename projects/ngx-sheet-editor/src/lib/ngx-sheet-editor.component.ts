@@ -14,20 +14,19 @@ export class NgxSheetEditorComponent implements OnInit {
   @Input() selects: Map<string,any> | undefined;
   @Input() title: string | undefined;
 
-  myObject:any = new Object();
   mySimpleObject:any = new Object();
-  readonly firstForm : string = "params"
   subelements : number = 0
+  simpleForm: FormGroup = this.fb.group({});
 
-  constructor(public fb: FormBuilder) { }
-
-  objectForm = this.fb.group({
+  private myObject:any = new Object();
+  private readonly firstForm : string = "params"
+  private objectForm = this.fb.group({
     name: ["Formulario Dinámico"],
     params: this.fb.group({})
   });
-
-  simpleForm: FormGroup = this.fb.group({});
   
+  constructor(private fb: FormBuilder) { }
+
   getType(key: string){
     return typeof this.mySimpleObject[key];
   }
@@ -54,7 +53,7 @@ export class NgxSheetEditorComponent implements OnInit {
     return key
   }
 
-  getComplexProperties(keys: string[], obj: any, isSubElement?: boolean, lastKey?: string) {   
+  private getComplexProperties(keys: string[], obj: any, isSubElement?: boolean, lastKey?: string) {   
     
     // Asignamos nombre de propiedad interna en caso de serlo
     var objectSubproperty: ObjectSubproperty = new ObjectSubproperty()
@@ -89,7 +88,7 @@ export class NgxSheetEditorComponent implements OnInit {
     else {return undefined}
   }
 
-  getComplexForm(keys: string[], obj: any, lastKey: string, lastForm: FormGroup) {
+  private getComplexForm(keys: string[], obj: any, lastKey: string, lastForm: FormGroup) {
     keys.forEach(key => {
       var property = obj[key]
       
@@ -103,7 +102,7 @@ export class NgxSheetEditorComponent implements OnInit {
     })
   }
 
-  createSimpleForm(keys: string[], obj: any, group: {[key: string]: any}){   
+  private createSimpleForm(keys: string[], obj: any, group: {[key: string]: any}){   
     keys.forEach(key => {
       var property = obj[key]
       
@@ -117,7 +116,7 @@ export class NgxSheetEditorComponent implements OnInit {
     this.simpleForm = this.fb.group(group)
   }
 
-  createSimpleProperties(keys: string[], obj: any) {   
+  private createSimpleProperties(keys: string[], obj: any) {   
     
     keys.forEach(key => {
       var property = obj[key]
@@ -130,7 +129,7 @@ export class NgxSheetEditorComponent implements OnInit {
     })
   }
 
-  loadProperties(){
+  private loadProperties(){
     if(this.object != undefined){
       // No son necesarios de momento
       this.getComplexProperties(Object.keys(this.object), this.object, false)    
@@ -151,6 +150,7 @@ export class NgxSheetEditorComponent implements OnInit {
     Object.keys(this.simpleForm.getRawValue()).forEach((key) => {
       console.log(this.simpleForm.controls[key].value)
     });
+    return true;
   }
 
 }

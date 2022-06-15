@@ -1,3 +1,4 @@
+import { not } from '@angular/compiler/src/output/output_ast';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -44,8 +45,9 @@ describe('NgxSheetEditorComponent', () => {
   });
 
   it('should not render title', () => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;   
-    expect(compiled.querySelector('h2')).not.toBe;
+    expect(compiled.querySelector('h2')).toBeFalsy();
   });
 
   it('should render correct title', () => {
@@ -58,12 +60,22 @@ describe('NgxSheetEditorComponent', () => {
 
   it('should render bool component when bool attribute', () => {
     const compiled = fixture.nativeElement as HTMLElement;   
-    expect(compiled.querySelector('lib-bool-printer')).toBe;
+    expect(compiled.querySelector('lib-bool-printer')).toBeTruthy();;
   });
 
   it('should render enum component when enum attribute', () => {
     const compiled = fixture.nativeElement as HTMLElement;   
-    expect(compiled.querySelector('lib-enum-printer')).toBe;
+    expect(compiled.querySelector('lib-enum-printer')).toBeTruthy();;
   });
 
+  it('should call submit function', () => {
+    spyOn(component, 'onSubmit');       
+    fixture.debugElement.query(By.css('form')).triggerEventHandler('submit', null);
+    expect(component.onSubmit).toHaveBeenCalled()
+  });
+
+  it('should return object values', () => {
+    var realValue = component.onSubmit()
+    expect(realValue).toBeTrue()
+  });
 });

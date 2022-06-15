@@ -12,7 +12,7 @@ describe('BoolPrinterComponent', () => {
 
     const formGroupDirective = new FormGroupDirective([], []);
     formGroupDirective.form = fb.group({
-      test: fb.control(null)
+      test: fb.control(true)
     });
 
     await TestBed.configureTestingModule({
@@ -36,5 +36,17 @@ describe('BoolPrinterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should print correctly radio buttons', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    var inputs = compiled.querySelectorAll('input');
+    var labels = compiled.querySelectorAll('label');
+    
+    expect(inputs.length).toBe(2);
+    expect(inputs[0].getAttribute('type')).toBe("radio")
+    expect(labels[0].textContent).toBe("True")
+    expect(inputs[1].getAttribute('type')).toBe("radio")
+    expect(labels[1].textContent).toBe("False")
   });
 });
