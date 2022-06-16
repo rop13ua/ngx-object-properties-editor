@@ -33,7 +33,7 @@ export class AppComponent implements OnInit{
                           .set("windows", "Número de ventanas")
                           .set("color", "Color");
     
-    this.prueba = prueba
+    this.prueba = this.enumPrueba
     this.house = HOUSE[1]
   }
 }

@@ -32,10 +32,6 @@ describe('EnumPrinterComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EnumPrinterComponent);
-    component = fixture.componentInstance;
-    component.form_elem = "testShort";
-    component.select = ["0", "1", "2", "blue", "red", "green"]
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -43,9 +39,24 @@ describe('EnumPrinterComponent', () => {
   });
 
   it('should print short enum', () => {
+    component = fixture.componentInstance;
+    component.form_elem = "testShort";
+    component.select = ["0", "1", "2", "blue", "red", "green"]
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('input')).toBeTruthy()
     expect(compiled.querySelector('input')?.getAttribute('type')).toBe('radio')
     expect(compiled.querySelector('label')?.textContent).toBe('blue')
+  })
+
+  it('should print long enum', () => {
+    component = fixture.componentInstance;
+    component.form_elem = "testLong";
+    component.select = ["0", "1", "2","3","4","5","spain", "france", "germany", "italy", "sweden", "united_kingdom"]
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('select')).toBeTruthy()
+    expect(compiled.querySelector('option')?.getAttribute('value')).toBe('0')
+    expect(compiled.querySelector('option')?.textContent).toBe('spain')
   })
 });
