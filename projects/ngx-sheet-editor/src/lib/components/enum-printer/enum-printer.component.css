@@ -1,0 +1,21 @@
+@import "../../themes/themes.css";
+
+.radio_label{
+    font-weight: normal;
+    color:var(--input-radio-color);
+}
+
+.radio_container{
+    margin-left: var(--radio-margin-left);
+    margin-top: var(--radio-margin-top);
+}
+
+select{
+    width: 15%;
+    background-color: var(--select-background-color);
+    box-shadow: var(--select-box-shadow);
+    border: var(--select-border);
+    border-radius: var(--select-border-radius);
+    padding: var(--select-padding);
+    color: var(--select-text-color);
+}

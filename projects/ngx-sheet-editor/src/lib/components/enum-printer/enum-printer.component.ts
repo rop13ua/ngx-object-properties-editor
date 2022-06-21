@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ControlContainer, FormControl, FormGroupDirective } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,8 @@ import { ControlContainer, FormControl, FormGroupDirective } from '@angular/form
 export class EnumPrinterComponent implements OnInit {
   @Input() form_elem: string | undefined
   @Input() select: string[] | undefined
-
+  @Output() changed = new EventEmitter<string>();
+  
   private names: string[] = [];
   formControl:  FormControl = new FormControl();
 
@@ -44,5 +45,9 @@ export class EnumPrinterComponent implements OnInit {
       return this.names.indexOf(key)
     }
     return undefined
+  }
+
+  onChange() {
+    this.changed.emit(this.form_elem);
   }
 }

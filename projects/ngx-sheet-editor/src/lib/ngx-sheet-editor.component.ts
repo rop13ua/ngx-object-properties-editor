@@ -1,9 +1,13 @@
-import { Component,Input, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component,Input, OnInit, Output } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ObjectSubproperty } from './model/models';
 
 @Component({
   selector: 'lib-ngx-sheet-editor',
+  host: {
+		"[class.light-theme]": "( theme === 'light' )",
+		"[class.dark-theme]": "( theme === 'dark' )"
+	},
   templateUrl: './ngx-sheet-editor.component.html',
   styleUrls: ['./ngx-sheet-editor.component.css']
 })
@@ -13,6 +17,8 @@ export class NgxSheetEditorComponent implements OnInit {
   @Input() labels: Map<string, string> | undefined;
   @Input() selects: Map<string,any> | undefined;
   @Input() title: string | undefined;
+  @Input() theme: string | undefined;
+  //@Output() updatedObject: Object | undefined
 
   mySimpleObject:any = new Object();
   subelements : number = 0
@@ -102,6 +108,27 @@ export class NgxSheetEditorComponent implements OnInit {
     })
   }
 
+  private updateObject(keys: string[], obj: any, changedKey: string) {   
+    var found = false;
+    var subproperties: string[] = [];
+
+    // Recorremos las propiedades
+    keys.forEach(key => {  
+      if (key === changedKey) { 
+        found = true
+        obj[key] = this.simpleForm.get(key)?.value
+      } else if (typeof obj[key] === "object"){
+        subproperties.push(key)
+      }
+    })
+
+    if(!found) { 
+      subproperties.forEach(key => {
+        this.updateObject(Object.keys(obj[key]), obj[key], changedKey)
+      })
+    }
+  }
+
   private createSimpleForm(keys: string[], obj: any, group: {[key: string]: any}){   
     keys.forEach(key => {
       var property = obj[key]
@@ -144,6 +171,7 @@ export class NgxSheetEditorComponent implements OnInit {
 
   ngOnInit(): void { 
     this.loadProperties()
+    
   }
 
   onSubmit(){
@@ -151,6 +179,12 @@ export class NgxSheetEditorComponent implements OnInit {
       console.log(this.simpleForm.controls[key].value)
     });
     return true;
+  }
+
+  onChange(key: any){
+    if(this.object != undefined)
+      this.updateObject(Object.keys(this.object), this.object, key)
+    console.log(this.object)
   }
 
 }

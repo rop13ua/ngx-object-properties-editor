@@ -1,0 +1,65 @@
+:host( .light-theme ) {
+	--background-color: #fefefe ;
+	--color: #202124;
+
+	--title-color: #202124;
+	--input-container-margin: 10px;
+	--input-container-margin-top: 2px;
+
+	--label-font-size: 18px;
+	--label-font-weight: bold;
+	--label-color: #202124;
+	--label-margin-bottom: 10px;
+	
+	--input-text-number-border: solid 1.5px #303134;
+	--input-border-radius: 5px;
+	--input-padding: 5px;
+	--input-font-size: 15px;
+	--input-background-color: #fefefe;
+	--input-text-color: #303134;
+	--input-text-box-shadow: 5px 5px 5px #9796a1;
+
+	--input-radio-color: #303134;
+	--radio-margin-left: 5px;
+	--radio-margin-top: 5px;
+
+	--select-background-color: #fefefe;
+	--select-box-shadow: 5px 5px 5px #9796a1;
+	--select-border: solid 1.5px #303134;
+	--select-border-radius: 5px;
+	--select-padding: 5px;
+	--select-text-color: #303134;
+}
+ 
+:host( .dark-theme ) {
+	--background-color: #202124 ;
+	--color: #fefefe;
+
+	--title-color: #fefefe;
+	--input-container-margin: 10px;
+	--input-container-margin-top: 2px;
+
+	--label-font-size: 18px;
+	--label-font-weight: bold;
+	--label-color: #fefefe;
+	--label-margin-bottom: 10px;
+	
+	--input-text-number-border: none;
+	--input-border-radius: 5px;
+	--input-padding: 5px;
+	--input-font-size: 15px;
+	--input-background-color: #303134;
+	--input-text-color: #a1a3a6;
+	--input-text-box-shadow: 5px 5px 5px #151517;
+
+	--input-radio-color: #a1a3a6;
+	--radio-margin-left: 5px;
+	--radio-margin-top: 5px;
+
+	--select-background-color: #303134;
+	--select-box-shadow: 5px 5px 5px #151517;
+	--select-border: none;
+	--select-border-radius: 5px;
+	--select-padding: 5px;
+	--select-text-color: #a1a3a6;
+}

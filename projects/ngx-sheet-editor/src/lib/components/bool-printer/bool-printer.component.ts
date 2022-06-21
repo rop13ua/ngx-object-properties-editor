@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ControlContainer, FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import { ControlContainer, FormControl, FormGroup, FormGroupDirective } from '@a
 })
 export class BoolPrinterComponent implements OnInit {
 @Input() form_elem: string | undefined
+@Output() changed = new EventEmitter<string>();
 
   constructor(private formGroupDirective: FormGroupDirective) { }
   formControl:  FormControl = new FormControl();
@@ -17,6 +18,10 @@ export class BoolPrinterComponent implements OnInit {
     if(this.form_elem != undefined){
       this.formControl = this.formGroupDirective.form.get(this.form_elem) as FormControl;
     }
+  }
+
+  onChange() {
+    this.changed.emit(this.form_elem);
   }
   
 }
