@@ -6,7 +6,8 @@ import { ObjectSubproperty } from './model/models';
   selector: 'lib-ngx-sheet-editor',
   host: {
 		"[class.light-theme]": "( theme === 'light' )",
-		"[class.dark-theme]": "( theme === 'dark' )"
+		"[class.dark-theme]": "( theme === 'dark' )",
+    "[class.muret-theme]": "( theme === 'muret' )"
 	},
   templateUrl: './ngx-sheet-editor.component.html',
   styleUrls: ['./ngx-sheet-editor.component.css']

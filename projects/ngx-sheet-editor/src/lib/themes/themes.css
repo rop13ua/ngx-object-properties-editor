@@ -11,11 +11,11 @@
 	--label-color: #202124;
 	--label-margin-bottom: 10px;
 	
-	--input-text-number-border: solid 1.5px #303134;
+	--input-text-number-border: solid 1px #f5f5f5;
 	--input-border-radius: 5px;
 	--input-padding: 5px;
 	--input-font-size: 15px;
-	--input-background-color: #fefefe;
+	--input-background-color: #f5f5f5;
 	--input-text-color: #303134;
 	--input-text-box-shadow: 5px 5px 5px #9796a1;
 
@@ -23,9 +23,9 @@
 	--radio-margin-left: 5px;
 	--radio-margin-top: 5px;
 
-	--select-background-color: #fefefe;
+	--select-background-color: #f5f5f5;
 	--select-box-shadow: 5px 5px 5px #9796a1;
-	--select-border: solid 1.5px #303134;
+	--select-border: solid 1px #59585e;
 	--select-border-radius: 5px;
 	--select-padding: 5px;
 	--select-text-color: #303134;
@@ -62,4 +62,43 @@
 	--select-border-radius: 5px;
 	--select-padding: 5px;
 	--select-text-color: #a1a3a6;
+}
+
+:host( .muret-theme ) {
+	--background-color: #103339 ;
+	--color: #ffffff;
+	--font-family: 'Roboto';
+
+	--title-color: #ffffff;
+	--input-container-margin: 10px;
+	--input-container-margin-top: 2px;
+
+	--label-font-size: 1rem;
+	--label-font-weight: none;
+	--label-color: #7de2db;;
+	--label-margin-bottom: 10px;
+	
+	--input-text-number-border: 1px solid #ced4da;
+	--input-border-radius: 0.25rem;
+	--input-padding: 6px 12px;
+	--input-font-size: 1rem;
+	--input-background-color: #ffffff;
+	--input-text-color: black;
+	--input-text-box-shadow: none;
+	--input-font-weight: 400;
+
+	--input-radio-color: #ced4da;
+	--input-radio-font-weigth: 400;
+	--input-radio-font-family: 'Roboto';
+	--input-font-size: 1rem;
+	--radio-margin-left: 5px;
+	--radio-margin-top: 5px;
+
+	--select-background-color: #ffffff;
+	--select-box-shadow: none;
+	--select-border: none;
+	--select-border-radius: 0.25rem;
+	--select-padding: 6px 12px;
+	--select-text-color: black;
+	--select-font-size: 1rem;
 }

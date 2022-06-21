@@ -1,7 +1,9 @@
 @import "../../themes/themes.css";
 
 .radio_label{
-    font-weight: normal;
+    font-family: var(--input-radio-font-family);
+    font-weight: var(--input-radio-font-weight);
+    font-size: var(--input-font-size);
     color:var(--input-radio-color);
 }
 
@@ -11,6 +13,9 @@
 }
 
 select{
+    font-family: var(--input-radio-font-family);
+    font-weight: var(--input-radio-font-weight);
+    font-size: var(--select-font-size);
     width: 15%;
     background-color: var(--select-background-color);
     box-shadow: var(--select-box-shadow);
