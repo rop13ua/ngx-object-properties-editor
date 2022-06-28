@@ -2,7 +2,7 @@ import { Component,EventEmitter,Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'lib-ngx-object-properties-editor',
+  selector: 'ngx-object-properties-editor',
   host: {
 		"[class.light-theme]": "( theme === 'light' )",
 		"[class.dark-theme]": "( theme === 'dark' )",

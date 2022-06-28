@@ -15,18 +15,96 @@ Run `ng build ngx-object-properties-editor` to build the Sheet Editor library ne
 
 If you want to build and uptdate the changes made in the library project automatically use `ng build ngx-object-properties-editor --watch` instead.
 
-
 ## Running unit tests
 
 Run `ng test ngx-object-properties-editor` to execute the library project unit tests via [Karma](https://karma-runner.github.io).
 Run `ng test demo` to execute the demo project unit tests via [Karma](https://karma-runner.github.io).
 
 ## Install
-Run `npm install @rop13ua\ngx-object-properties-editor` to install the npm package containing this library into your project.
+
+Run `npm install ngx-object-properties-editor` to install the npm package containing this library into your project.
 
 ## Run project
 
 Run `ng serve` to start the DEMO project. You can access to it going to [http://localhost:4200/](http://localhost:4200/)
+
+## Npm
+
+This library is published as an NPM package so that any user can easily install it. You can access its main page following this [link](https://www.npmjs.com/package/ngx-object-properties-editor).
+
+## Basic usage example
+
+First, we should import the library into your application module:
+```
+import { NgModule } from '@angular/core';
+import { NgxObjectPropertiesEditorModule } from '...';
+import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxObjectPropertiesEditorModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+The imported component can then be used anywhere in the application. We will create a view and add it: 
+```
+<h2>Example:</h2>
+<div id="main_container">
+	<ngx-object-properties-editor [object]="test" [labels]="labels" 
+								  [selects]="enums" theme={{theme}} 
+								  title={{title}}>
+	</ngx-object-properties-editor>
+</div>
+```
+
+All the input parameters that we can see in the code above have been created previously in the controller. We can see them in the following example:
+
+```
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent implements OnInit {
+  constructor()) {}
+
+  test: any;
+  title = 'Example form';
+  labels: Map<string,string> = new Map();
+  enums: Map<string,any> = new Map();
+  theme: string = "dark"
+
+  ngOnInit(): void { 
+	enum eyesEnum {"Blue", "Green", "Dark brown", "Light brown", "Black"}
+	enum handEnum {"Right-handed", "Left-handed", "Ambidextrous"}
+
+    this.test = {person: {name: "Raquel", surnames: {s1: "Ortega", s2: "Perez"}}, age: 22, eyes: this.EyesEnum['Dark brown'], hands: this.HandsEnum['Right-handed']}
+    
+    this.enums = new Map().set("eyes",eyesEnum).set("hands", handEnum)
+
+    this.labels = new Map().set("name", "Name")
+                          .set("s1", "First surname")
+                          .set("s2","Second surname")
+                          .set("age", "Age")
+                          .set("eyes", "Eye color")
+                          .set("hands", "Dominant hand")
+    
+  }
+```
+
+With this we will be able to import and run successfully this library.
 
 ## Theming
 
@@ -88,3 +166,5 @@ The idea is to create a class inside your CSS that contains the customized param
 	--font-family: 'Roboto';
 }
 ```
+
+
