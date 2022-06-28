@@ -16,7 +16,7 @@ select{
     font-family: var(--input-radio-font-family);
     font-weight: var(--input-radio-font-weight);
     font-size: var(--select-font-size);
-    width: 15%;
+    width: var(--select-width);
     background-color: var(--select-background-color);
     box-shadow: var(--select-box-shadow);
     border: var(--select-border);

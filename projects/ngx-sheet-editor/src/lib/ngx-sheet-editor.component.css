@@ -8,16 +8,16 @@
     font-family: var(--font-family);
 }
 
-label {
+:host label {
     font-size: var(--label-font-size);
     font-weight: var(--label-font-weight);
     color: var(--label-color);
     margin-bottom: var(--label-margin-bottom);
 }
 
-input[type='text'],[type='number'] {
+:host input[type='text'],[type='number'] {
     padding: 3px;
-    width: 15%;
+    width: var(--input-text-number-width);
     border: var(--input-text-number-border);
     border-radius: var(--input-border-radius);
     padding: var(--input-padding);
@@ -27,11 +27,11 @@ input[type='text'],[type='number'] {
     box-shadow: var(--input-text-box-shadow);
 }
 
-input[type='radio']{
+:host input[type='radio']{
     margin-left: 5px;
 }
 
-input{
+:host input{
     font-family: var(--font-family);
     font-weight: var(--input-font-weight);
 }
@@ -63,14 +63,14 @@ button:hover {
     box-shadow: 0 0 0 3px rgb(161, 161, 161);
 } */
 
-h2 {
+:host h2 {
     color: var(--title-color);
 }
 
-.input_container{
+:host .input_container{
     margin: var(--input-container-margin)
 }
 
-.margin_input{
+:host .margin_input{
     margin-top:var(--input-container-margin-top);
 }

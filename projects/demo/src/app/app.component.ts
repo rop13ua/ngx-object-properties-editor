@@ -1,39 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { PEOPLE } from './mock-object';
-import { HOUSE } from './mock-object';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { eyesEnum, handEnum } from './enums';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  constructor() { }
+
+export class AppComponent implements OnInit, AfterViewInit{
+  constructor(private elementRef: ElementRef) {}
   
-  prueba: any;
-  house: any;
-  enumPrueba: any;
-  title = 'demo';
-  lab: Map<string,string> = new Map();
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+        .body.style.backgroundColor = '#ffe7f9';
+}
+
+  EyesEnum = eyesEnum;
+  HandsEnum = handEnum;
+
+  test: any;
+  title = 'Example form';
+  labels: Map<string,string> = new Map();
   enums: Map<string,any> = new Map();
+  theme: string = "custom"
 
-  ngOnInit(): void {
-    var prueba = {Persona: {Nombre:"Raquel", Apellidos: {Ap1: "Ortega", Ap2: "Perez"}}, Edad: 12, DNI:"50384811E", Bloqueado: false}
+  ngOnInit(): void { 
+    this.test = {person: {name:"Raquel", surnames: {s1: "Ortega", s2: "Pérez"}}, age: 22, eyes: this.EyesEnum['Dark brown'], hands: this.HandsEnum['Right-handed']}
     
-    enum equiposEnum {"G2", "FNATIC", "MADLions","Rogue", "Excel", "Astralis", "Vitality"}
-    enum posicion {"TOP", "MID", "ADC", "SUPP"}
-    
-    this.enums = new Map().set("Posicion",posicion).set("Equipo", equiposEnum)
+    this.enums = new Map().set("eyes",eyesEnum).set("hands", handEnum)
 
-    this.enumPrueba = {Jugador: {Nombre:"Victor", Apellido: "Lirola"}, Posicion: posicion.ADC, Equipo: equiposEnum.G2, Activo: false}
-
-    this.lab = new Map().set("id", "Número ID")
-                          .set("doors", "Puertas")
-                          .set("type","Tipo")
-                          .set("windows", "Número de ventanas")
-                          .set("color", "Color");
+    this.labels = new Map().set("name", "Name")
+                          .set("s1", "First surname")
+                          .set("s2","Second surname")
+                          .set("age", "Age")
+                          .set("eyes", "Eye color")
+                          .set("hands", "Dominant hand")
     
-    this.prueba = this.enumPrueba
-    this.house = HOUSE[1]
+  }
+
+  onChange(e: any) {
+    console.log(e.target.value)
+    this.theme = e.target.value
   }
 }
