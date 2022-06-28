@@ -18,7 +18,8 @@ If you want to build and uptdate the changes made in the library project automat
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test ngx-sheet-editor` to execute the library project unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test demo` to execute the demo project unit tests via [Karma](https://karma-runner.github.io).
 
 ## Install
 Run `npm install @rop13ua\ngx-sheet-editor` to install the npm package containing this library into your project.

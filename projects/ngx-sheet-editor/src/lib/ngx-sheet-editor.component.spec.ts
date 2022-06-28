@@ -68,14 +68,15 @@ describe('NgxSheetEditorComponent', () => {
     expect(compiled.querySelector('lib-enum-printer')).toBeTruthy();;
   });
 
-  it('should call submit function', () => {
-    spyOn(component, 'onSubmit');       
-    fixture.debugElement.query(By.css('form')).triggerEventHandler('submit', null);
-    expect(component.onSubmit).toHaveBeenCalled()
+  it('should call onChange function', () => {
+    spyOn(component, 'onChange');       
+    fixture.debugElement.query(By.css('lib-bool-printer')).triggerEventHandler('changed', null);
+    expect(component.onChange).toHaveBeenCalled()
   });
 
-  it('should return object values', () => {
-    var realValue = component.onSubmit()
-    expect(realValue).toBeTrue()
+  it('should dispatch event when object is updated', () => {
+    spyOn(component.onObjectUpdated, 'emit')  
+    component.onChange('nombre')
+    expect(component.onObjectUpdated.emit).toHaveBeenCalled();
   });
 });

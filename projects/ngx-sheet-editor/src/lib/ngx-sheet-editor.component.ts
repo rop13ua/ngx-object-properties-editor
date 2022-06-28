@@ -113,13 +113,6 @@ export class NgxSheetEditorComponent implements OnInit {
     this.loadProperties()
   }
 
-  onSubmit(){
-    Object.keys(this.simpleForm.getRawValue()).forEach((key) => {
-      console.log(this.simpleForm.controls[key].value)
-    });
-    return true;
-  }
-
   onChange(key: any){
     if(this.object != undefined) {
       this.updateObject(Object.keys(this.object), this.object, key)
@@ -128,4 +121,4 @@ export class NgxSheetEditorComponent implements OnInit {
     console.log(this.object)
     this.onObjectUpdated.emit(this.object)
   }
-}
+} 
