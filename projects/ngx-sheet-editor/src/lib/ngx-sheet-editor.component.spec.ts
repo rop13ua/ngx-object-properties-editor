@@ -76,7 +76,19 @@ describe('NgxSheetEditorComponent', () => {
 
   it('should dispatch event when object is updated', () => {
     spyOn(component.onObjectUpdated, 'emit')  
+    fixture.detectChanges();
     component.onChange('nombre')
     expect(component.onObjectUpdated.emit).toHaveBeenCalled();
   });
+
+  it('should update object correctly', () => { 
+    component.simpleForm.get("nombre")?.setValue("Nuevo nombre")
+    component.onChange("nombre")
+   
+    var obj = component.object as any
+    var realValue = obj["Persona"]["nombre"]
+    
+    expect(realValue).toBe("Nuevo nombre")
+  });
+
 });
