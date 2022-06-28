@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
-import { NgxSheetEditorComponent } from './ngx-sheet-editor.component';
+import { NgxObjectPropertiesEditorComponent } from './ngx-object-properties-editor.component';
 import { EnumPrinterComponent } from './components/enum-printer/enum-printer.component';
 import { BoolPrinterComponent } from './components/bool-printer/bool-printer.component';
 
@@ -9,7 +9,7 @@ import { BoolPrinterComponent } from './components/bool-printer/bool-printer.com
 
 @NgModule({
   declarations: [
-    NgxSheetEditorComponent,
+    NgxObjectPropertiesEditorComponent,
     EnumPrinterComponent,
     BoolPrinterComponent
   ],
@@ -18,8 +18,8 @@ import { BoolPrinterComponent } from './components/bool-printer/bool-printer.com
     CommonModule
   ],
   exports: [
-    NgxSheetEditorComponent
+    NgxObjectPropertiesEditorComponent
   ],
   providers: [FormGroupDirective]
 })
-export class NgxSheetEditorModule { }
+export class NgxObjectPropertiesEditorModule { }
