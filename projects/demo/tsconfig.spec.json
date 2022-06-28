@@ -3,14 +3,17 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "preserveSymlinks": true,
-    "outDir": "../../out-tsc/lib",
-    "declaration": true,
-    "declarationMap": true,
-    "inlineSources": true,
-    "types": []
+    "outDir": "../../out-tsc/spec",
+    "types": [
+      "jasmine"
+    ]
   },
-  "exclude": [
+  "files": [
     "src/test.ts",
-    "**/*.spec.ts"
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
   ]
 }

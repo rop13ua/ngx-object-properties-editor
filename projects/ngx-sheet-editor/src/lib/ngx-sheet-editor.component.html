@@ -1,0 +1,22 @@
+<div>
+    <h2 id="title" *ngIf="title != undefined">{{title}}</h2>
+    <form id="dynamicForm" [formGroup]="simpleForm">
+        <div class="input_container" *ngFor="let form_elem of getElems()">
+            <label>{{getLabel(form_elem)}}:</label>
+            <div class="margin_input" [ngSwitch]="getType(form_elem)">
+                <div *ngSwitchCase="'string'">
+                    <input type="text" formControlName="{{form_elem}}" (change)="onChange(form_elem)"/>
+                </div>
+                <div *ngSwitchCase="'number'">
+                    <input *ngIf="!isEnum(form_elem)" type="number" formControlName="{{form_elem}}" (change)="onChange(form_elem)"/>
+                    <div *ngIf="isEnum(form_elem)">
+                        <lib-enum-printer (changed)="onChange($event)" [form_elem]="form_elem" [select]="getSelect(form_elem)"></lib-enum-printer>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'boolean'">
+                    <lib-bool-printer (changed)="onChange($event)" form_elem="{{form_elem}}"></lib-bool-printer>
+                </div>
+            </div>  
+        </div>
+      </form>
+</div>

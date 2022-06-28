@@ -1,0 +1,76 @@
+@import "./themes/themes.css";
+
+:host {
+	background-color: var( --background-color ) ;
+	color: var( --color ) ;
+	display: block ;
+	padding: 1px 20px 1px 20px;
+    font-family: var(--font-family);
+}
+
+:host label {
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    color: var(--label-color);
+    margin-bottom: var(--label-margin-bottom);
+}
+
+:host input[type='text'],[type='number'] {
+    padding: 3px;
+    width: var(--input-text-number-width);
+    border: var(--input-text-number-border);
+    border-radius: var(--input-border-radius);
+    padding: var(--input-padding);
+    font-size: var(--input-font-size);
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
+    box-shadow: var(--input-text-box-shadow);
+}
+
+:host input[type='radio']{
+    margin-left: 5px;
+}
+
+:host input{
+    font-family: var(--font-family);
+    font-weight: var(--input-font-weight);
+}
+
+/* button{
+    margin: 10px;
+    background-color: white;
+    border: solid 1.7px #103339;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #103339;
+    padding: 10px;
+}
+
+button:hover {
+    margin: 10px;
+    background-color: #103339;
+    border: solid 1.7px #103339;;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    padding: 10px;
+    
+} */
+
+/* button:active {
+    box-shadow: 0 0 0 3px rgb(161, 161, 161);
+} */
+
+:host h2 {
+    color: var(--title-color);
+}
+
+:host .input_container{
+    margin: var(--input-container-margin)
+}
+
+:host .margin_input{
+    margin-top:var(--input-container-margin-top);
+}

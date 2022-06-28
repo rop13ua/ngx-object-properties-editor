@@ -1,0 +1,113 @@
+select{
+	margin-left: 1rem;
+	margin-bottom: 0.5rem;
+	width: 30%;
+}
+
+h2{
+	text-align: center;
+	color: #fc5185
+}
+
+table{
+	padding: 1rem;
+	border: 4px solid white;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+
+td:nth-child(even){
+	text-align: left;
+	padding-left: 1rem;
+}
+
+td:nth-child(odd){
+	text-align: left;
+}
+
+.main_container{
+	margin-top: 2rem;	
+}
+
+.column_left {
+	float: left;
+	width: 30%;
+	min-width: 300px;
+}
+
+.column_right {
+	float: left;
+	width: 70%;
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.title{
+	text-align: center;
+	background-color:#26374a;
+	color: white;
+	padding: 0.5rem;
+	margin-left: -5px;
+	margin-top: -10px;
+}
+
+.title_label{
+	font-weight: bold;
+	font-size: 18px;
+	color: #26374a;
+}
+
+.select_container{
+	text-align: center;
+}
+
+.demo_container{
+	margin: auto;
+	width: 40%;
+	min-width: 300px;
+	border: 4px solid white;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+/* We can use 'custom' class and CSS variables to change the ngx-sheet-editor design*/
+.custom {
+    --background-color: #ffe7f9 ;
+
+	--title-color: #26374a;
+	--input-container-margin: 10px;
+	--input-container-margin-top: 2px;
+
+	--label-font-size: 18px;
+	--label-font-weight: bold;
+	--label-color: #fc5185;
+	--label-margin-bottom: 1rem;
+	
+	--input-text-number-width: 90%;
+	--input-border-radius: 0.25rem;
+	--input-padding: 10px 12px;
+	--input-font-size: 1rem;
+	--input-background-color: #ffffff;
+	--input-text-color: #26374a;
+	--input-text-box-shadow: none;
+	--input-font-weight: 400;
+
+	--input-radio-color: #26374a;
+	--input-radio-font-weigth: 400;
+	--input-font-size: 18px;
+	--radio-margin-left: 5px;
+	--radio-margin-top: 5px;
+
+	--select-background-color: #ffffff;
+	--select-box-shadow: none;
+	--select-border: none;
+	--select-border-radius: 0.25rem;
+	--select-padding: 10px 12px;
+	--select-width: 96%;
+	--select-text-color: #26374a;
+	--select-font-size: 18px;
+}

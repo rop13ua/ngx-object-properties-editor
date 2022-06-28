@@ -1,0 +1,11 @@
+.radio_label{
+    font-family: var(--input-radio-font-family);
+    font-weight: var(--input-radio-font-weight);
+    font-size: var(--input-font-size);
+    color:var(--input-radio-color);
+}
+
+.radio_container{
+    margin-left: var(--radio-margin-left);
+    margin-top: var(--radio-margin-top);
+}

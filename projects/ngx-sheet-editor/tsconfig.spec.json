@@ -2,6 +2,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "preserveSymlinks": true,
     "outDir": "../../out-tsc/spec",
     "types": [
       "jasmine"

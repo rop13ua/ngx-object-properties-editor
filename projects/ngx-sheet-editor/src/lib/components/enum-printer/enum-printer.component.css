@@ -1,0 +1,26 @@
+@import "../../themes/themes.css";
+
+.radio_label{
+    font-family: var(--input-radio-font-family);
+    font-weight: var(--input-radio-font-weight);
+    font-size: var(--input-font-size);
+    color:var(--input-radio-color);
+}
+
+.radio_container{
+    margin-left: var(--radio-margin-left);
+    margin-top: var(--radio-margin-top);
+}
+
+select{
+    font-family: var(--input-radio-font-family);
+    font-weight: var(--input-radio-font-weight);
+    font-size: var(--select-font-size);
+    width: var(--select-width);
+    background-color: var(--select-background-color);
+    box-shadow: var(--select-box-shadow);
+    border: var(--select-border);
+    border-radius: var(--select-border-radius);
+    padding: var(--select-padding);
+    color: var(--select-text-color);
+}

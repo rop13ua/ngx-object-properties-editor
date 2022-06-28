@@ -1,0 +1,51 @@
+<div class="title">  <h1>This is the DEMO project</h1> </div>
+<div class="main_container">
+  <div class="row">
+    <div class="column_left">
+      <h2>OBJECT DATA:</h2>
+      <table>
+        <tr>
+          <td class="title_label">Name: </td>
+          <td>{{test.person.name}}</td>
+        </tr>
+        <tr>
+          <td class="title_label">First surname: </td>
+          <td>{{test.person.surnames.s1}}</td>
+        </tr>
+        <tr>
+          <td class="title_label">Second surname: </td>
+          <td>{{test.person.surnames.s2}}</td>
+        </tr>
+        <tr>
+          <td class="title_label">Age: </td>
+          <td>{{test.age}}</td>
+        </tr>
+        <tr>
+          <td class="title_label">Eye color: </td>
+          <td>{{EyesEnum[test.eyes]}}</td>
+        </tr>
+        <tr>
+          <td class="title_label">Dominant hand: </td>
+          <td>{{HandsEnum[test.hands]}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="column_right">
+      <h2>FORM:</h2>
+      <div class="demo_container">
+        <div class="select_container">
+          <label class="title_label">Select a theme:</label>
+          <select (change)="onChange($event)">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="muret">MuRET</option>
+            <option value="custom" selected>Custom</option>
+          </select>
+        </div>
+        <div>
+          <lib-ngx-sheet-editor [object]="test" [labels]="labels" [selects]="enums" theme={{theme}} title={{title}}></lib-ngx-sheet-editor>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
