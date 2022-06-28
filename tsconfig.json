@@ -12,9 +12,9 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "ngx-sheet-editor": [
-        "dist/ngx-sheet-editor/ngx-sheet-editor",
-        "dist/ngx-sheet-editor"
+      "ngx-object-properties-editor": [
+        "dist/ngx-object-properties-editor/ngx-object-properties-editor",
+        "dist/ngx-object-properties-editor"
       ]
     },
     "declaration": false,

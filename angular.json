@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-sheet-editor": {
+    "ngx-object-properties-editor": {
       "projectType": "library",
-      "root": "projects/ngx-sheet-editor",
-      "sourceRoot": "projects/ngx-sheet-editor/src",
+      "root": "projects/ngx-object-properties-editor",
+      "sourceRoot": "projects/ngx-object-properties-editor/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ngx-sheet-editor/ng-package.json"
+            "project": "projects/ngx-object-properties-editor/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-sheet-editor/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-object-properties-editor/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ngx-sheet-editor/tsconfig.lib.json"
+              "tsConfig": "projects/ngx-object-properties-editor/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,9 +27,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-sheet-editor/src/test.ts",
-            "tsConfig": "projects/ngx-sheet-editor/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-sheet-editor/karma.conf.js"
+            "main": "projects/ngx-object-properties-editor/src/test.ts",
+            "tsConfig": "projects/ngx-object-properties-editor/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-object-properties-editor/karma.conf.js"
           }
         }
       }
@@ -134,5 +134,5 @@
       }
     }
   },
-  "defaultProject": "ngx-sheet-editor"
+  "defaultProject": "ngx-object-properties-editor"
 }

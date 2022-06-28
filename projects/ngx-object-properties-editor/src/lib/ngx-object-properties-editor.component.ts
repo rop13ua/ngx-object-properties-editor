@@ -2,18 +2,18 @@ import { Component,EventEmitter,Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'lib-ngx-sheet-editor',
+  selector: 'lib-ngx-object-properties-editor',
   host: {
 		"[class.light-theme]": "( theme === 'light' )",
 		"[class.dark-theme]": "( theme === 'dark' )",
     "[class.muret-theme]": "( theme === 'muret' )",
     "[class.custom]": "( theme === 'custom' )"
 	},
-  templateUrl: './ngx-sheet-editor.component.html',
-  styleUrls: ['./ngx-sheet-editor.component.css']
+  templateUrl: './ngx-object-properties-editor.component.html',
+  styleUrls: ['./ngx-object-properties-editor.component.css']
 })
 
-export class NgxSheetEditorComponent implements OnInit {
+export class NgxObjectPropertiesEditorComponent implements OnInit {
   @Input() object: Object | undefined;
   @Input() labels: Map<string, string> | undefined;
   @Input() selects: Map<string,any> | undefined;

@@ -1,24 +1,22 @@
-import { not } from '@angular/compiler/src/output/output_ast';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { NgxObjectPropertiesEditorComponent } from './ngx-object-properties-editor.component';
 
-import { NgxSheetEditorComponent } from './ngx-sheet-editor.component';
-
-describe('NgxSheetEditorComponent', () => {
-  let component: NgxSheetEditorComponent;
-  let fixture: ComponentFixture<NgxSheetEditorComponent>;
+describe('NgxObjectPropertiesEditorComponent', () => {
+  let component: NgxObjectPropertiesEditorComponent;
+  let fixture: ComponentFixture<NgxObjectPropertiesEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports:[ReactiveFormsModule],
-      declarations: [ NgxSheetEditorComponent ]
+      declarations: [ NgxObjectPropertiesEditorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgxSheetEditorComponent);
+    fixture = TestBed.createComponent(NgxObjectPropertiesEditorComponent);
     component = fixture.componentInstance;
     enum trabajo {"jornada-completa", "media-jornada", "paro", "estudiante"} 
     enum color_ojos {"azul","marron","verde","negros","grises","pardos","miel"}  

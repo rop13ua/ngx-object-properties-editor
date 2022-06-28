@@ -36,33 +36,6 @@
     font-weight: var(--input-font-weight);
 }
 
-/* button{
-    margin: 10px;
-    background-color: white;
-    border: solid 1.7px #103339;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 15px;
-    color: #103339;
-    padding: 10px;
-}
-
-button:hover {
-    margin: 10px;
-    background-color: #103339;
-    border: solid 1.7px #103339;;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 15px;
-    color: white;
-    padding: 10px;
-    
-} */
-
-/* button:active {
-    box-shadow: 0 0 0 3px rgb(161, 161, 161);
-} */
-
 :host h2 {
     color: var(--title-color);
 }

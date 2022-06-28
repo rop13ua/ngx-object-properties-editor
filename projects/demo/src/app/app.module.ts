@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgxSheetEditorModule } from 'projects/ngx-sheet-editor/src/public-api';
-
+import { NgxObjectPropertiesEditorModule } from 'projects/ngx-object-properties-editor/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -14,7 +13,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxSheetEditorModule
+    NgxObjectPropertiesEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

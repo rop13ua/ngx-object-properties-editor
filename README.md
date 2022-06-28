@@ -1,9 +1,9 @@
-# Sheet editor
+# Object properties editor
 
 This repo contains two separated projects:
 
 - demo: Demonstration project containing an example of use. It shows all the features and functionalities of the library and how to use them. 
-- ngx-sheet-editor: Project containing library.
+- ngx-object-properties-editor: Project containing library.
 
 Thes library is a project consisting of a component capable of receiving any object and displaying a form for the modification of its attributes.
 
@@ -11,18 +11,18 @@ Once all the necessary changes have been made, the updated object will be return
 
 ## Build
 
-Run `ng build ngx-sheet-editor` to build the Sheet Editor library needed in the DEMO application and test how it works.
+Run `ng build ngx-ob-editor` to build the Sheet Editor library needed in the DEMO application and test how it works.
 
-If you want to build and uptdate the changes made in the library project automatically use `ng build ngx-sheet-editor --watch` instead.
+If you want to build and uptdate the changes made in the library project automatically use `ng build ngx-object-properties-editor --watch` instead.
 
 
 ## Running unit tests
 
-Run `ng test ngx-sheet-editor` to execute the library project unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test ngx-object-properties-editor` to execute the library project unit tests via [Karma](https://karma-runner.github.io).
 Run `ng test demo` to execute the demo project unit tests via [Karma](https://karma-runner.github.io).
 
 ## Install
-Run `npm install @rop13ua\ngx-sheet-editor` to install the npm package containing this library into your project.
+Run `npm install @rop13ua\ngx-object-properties-editor` to install the npm package containing this library into your project.
 
 ## Run project
 

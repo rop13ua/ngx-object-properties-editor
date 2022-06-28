@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-
 import { EnumPrinterComponent } from './enum-printer.component';
 
 describe('EnumPrinterComponent', () => {
