@@ -5,7 +5,87 @@ Thes library is a project consisting of a component capable of receiving any obj
 Once all the necessary changes have been made, the updated object will be returned to the user.This component has several customization options, explained in later sections.
 
 ## Install
-Run `npm install @rop13ua\ngx-object-properties-editor` to install the npm package containing this library into your project.
+Run `npm install ngx-object-properties-editor` to install the npm package containing this library into your project.
+
+## GitHub
+
+This library is hosted in a public GitHub repository that you can access by following this [link](https://github.com/rop13ua/ngx-object-properties-editor). 
+
+In this repository you can see how the library has been developed, as well as a project called "demo" that contains an example of use. In case you have any doubts about how the library works, this project shows the use of all the features provided.
+
+## Basic usage example
+
+First, we should import the library into your application module:
+```
+import { NgModule } from '@angular/core';
+import { NgxObjectPropertiesEditorModule } from '...';
+import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxObjectPropertiesEditorModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+The imported component can then be used anywhere in the application. We will create a view and add it: 
+```
+<h2>Example:</h2>
+<div id="main_container">
+	<ngx-object-properties-editor [object]="test" [labels]="labels" 
+								  [selects]="enums" theme={{theme}} 
+								  title={{title}}>
+	</ngx-object-properties-editor>
+</div>
+```
+
+All the input parameters that we can see in the code above have been created previously in the controller. We can see them in the following example:
+
+```
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent implements OnInit {
+  constructor()) {}
+
+  test: any;
+  title = 'Example form';
+  labels: Map<string,string> = new Map();
+  enums: Map<string,any> = new Map();
+  theme: string = "dark"
+
+  ngOnInit(): void { 
+	enum eyesEnum {"Blue", "Green", "Dark brown", "Light brown", "Black"}
+	enum handEnum {"Right-handed", "Left-handed", "Ambidextrous"}
+
+    this.test = {person: {name: "Raquel", surnames: {s1: "Ortega", s2: "Perez"}}, age: 22, eyes: this.EyesEnum['Dark brown'], hands: this.HandsEnum['Right-handed']}
+    
+    this.enums = new Map().set("eyes",eyesEnum).set("hands", handEnum)
+
+    this.labels = new Map().set("name", "Name")
+                          .set("s1", "First surname")
+                          .set("s2","Second surname")
+                          .set("age", "Age")
+                          .set("eyes", "Eye color")
+                          .set("hands", "Dominant hand")
+    
+  }
+```
+
+With this we will be able to import and run successfully this library.
 
 ## Theming
 
