@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component,EventEmitter,Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
@@ -10,7 +11,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
     "[class.custom]": "( theme === 'custom' )"
 	},
   templateUrl: './ngx-object-properties-editor.component.html',
-  styleUrls: ['./ngx-object-properties-editor.component.css']
+  styleUrls: ['./ngx-object-properties-editor.component.css','./themes.css']
 })
 
 export class NgxObjectPropertiesEditorComponent implements OnInit {
@@ -19,8 +20,11 @@ export class NgxObjectPropertiesEditorComponent implements OnInit {
   @Input() selects: Map<string,any> | undefined;
   @Input() title: string | undefined;
   @Input() theme: string | undefined;
+  @Input() hidden: string[] | undefined;
   @Output() onObjectUpdated = new EventEmitter<Object>();
 
+  static DEFINED_THEMES = ["light", "dark", "muret", "custom"];
+ 
   mySimpleObject:any = new Object();
   subelements : number = 0
   simpleForm: FormGroup = this.fb.group({});
@@ -46,11 +50,20 @@ export class NgxObjectPropertiesEditorComponent implements OnInit {
     return (this.selects != undefined && this.selects.get(key) != undefined)
   }
 
+  isHidden(key: string){
+    return (this.hidden != undefined && this.hidden.indexOf(key) > -1)
+  }
+
   getLabel(key: string){
     if(this.labels != undefined && this.labels.get(key) != undefined){
       return this.labels.get(key)
     }
-    return key
+    return this.firstCapitalLetter(key)
+  }
+
+  firstCapitalLetter(word: string) {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
 
   private updateObject(keys: string[], obj: any, changedKey: string) {   
@@ -106,6 +119,10 @@ export class NgxObjectPropertiesEditorComponent implements OnInit {
       var group :{[key: string]: any} = {}
       this.createSimpleProperties(Object.keys(this.object), this.object) 
       this.createSimpleForm(Object.keys(this.object), this.object, group)
+    }
+
+    if(this.theme == undefined || NgxObjectPropertiesEditorComponent.DEFINED_THEMES.indexOf(this.theme) == -1) {
+      this.theme = "light";
     }
   }
 

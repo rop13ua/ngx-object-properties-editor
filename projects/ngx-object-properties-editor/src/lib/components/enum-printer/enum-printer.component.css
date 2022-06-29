@@ -1,5 +1,3 @@
-@import "../../themes/themes.css";
-
 .radio_label{
     font-family: var(--input-radio-font-family);
     font-weight: var(--input-radio-font-weight);

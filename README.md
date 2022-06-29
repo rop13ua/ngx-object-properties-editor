@@ -59,9 +59,7 @@ The imported component can then be used anywhere in the application. We will cre
 ```
 <h2>Example:</h2>
 <div id="main_container">
-	<ngx-object-properties-editor [object]="test" [labels]="labels" 
-								  [selects]="enums" theme={{theme}} 
-								  title={{title}}>
+	<ngx-object-properties-editor [object]="test" [labels]="labels" [selects]="enums" [hidden]="hidden" theme={{theme}} title={{title}}>
 	</ngx-object-properties-editor>
 </div>
 ```
@@ -83,8 +81,9 @@ export class AppComponent implements OnInit {
   test: any;
   title = 'Example form';
   labels: Map<string,string> = new Map();
+  hidden: string[] = [];
   enums: Map<string,any> = new Map();
-  theme: string = "dark"
+  theme: string = "dark";
 
   ngOnInit(): void { 
 	enum eyesEnum {"Blue", "Green", "Dark brown", "Light brown", "Black"}
@@ -93,6 +92,8 @@ export class AppComponent implements OnInit {
     this.test = {person: {name: "Raquel", surnames: {s1: "Ortega", s2: "Perez"}}, age: 22, eyes: this.EyesEnum['Dark brown'], hands: this.HandsEnum['Right-handed']}
     
     this.enums = new Map().set("eyes",eyesEnum).set("hands", handEnum)
+
+    this.hidden = ["hands"]
 
     this.labels = new Map().set("name", "Name")
                           .set("s1", "First surname")
@@ -105,6 +106,23 @@ export class AppComponent implements OnInit {
 ```
 
 With this we will be able to import and run successfully this library.
+
+## Parameters
+
+Here we have a table with all the parameters that we can add to the view component:
+
+| Name     | Description                               | Optional |
+|--------------------|:-------------------------------:|:--------:|
+| object   | Parameter that receives an object from which the form will be printed.| No |
+| labels   | Parameter that receives a map containing the name of the attribute and the title label that you want to be displayed in the form. | Yes |
+| selects  | Parameter that receives a map containing the name of the attributes that are of the enumerated type and the enum declaration. This way they will be displayed on the screen using an input of type select or radio. | Yes |
+| hidden   | Parameter that receives an array of strings containing the name of the attributes that the user does not want to be displayed on the form. | Yes |
+| theme    | Parameter that receives a string containing one of the defined themes. This will change the design of the form | Yes |
+| title    | Parameter that receives a string containig a title for the form. | Yes |
+
+
+
+
 
 ## Theming
 

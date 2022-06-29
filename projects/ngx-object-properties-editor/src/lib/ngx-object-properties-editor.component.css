@@ -1,5 +1,3 @@
-@import "./themes/themes.css";
-
 :host {
 	background-color: var( --background-color ) ;
 	color: var( --color ) ;
