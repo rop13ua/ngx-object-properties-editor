@@ -4,7 +4,7 @@ import { ControlContainer, FormControl, FormGroup, FormGroupDirective } from '@a
 @Component({
   selector: 'lib-bool-printer',
   templateUrl: './bool-printer.component.html',
-  styleUrls: ['./bool-printer.component.css'],
+  styleUrls: ['./bool-printer.component.css', '../../themes.css'],
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class BoolPrinterComponent implements OnInit {

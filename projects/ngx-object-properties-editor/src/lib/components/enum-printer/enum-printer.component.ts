@@ -4,7 +4,7 @@ import { ControlContainer, FormControl, FormGroupDirective } from '@angular/form
 @Component({
   selector: 'lib-enum-printer',
   templateUrl: './enum-printer.component.html',
-  styleUrls: ['./enum-printer.component.css'],
+  styleUrls: ['./enum-printer.component.css', '../../themes.css'],
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class EnumPrinterComponent implements OnInit {
