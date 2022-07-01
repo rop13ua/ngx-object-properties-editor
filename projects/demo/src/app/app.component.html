@@ -2,31 +2,54 @@
 <div class="main_container">
   <div class="row">
     <div class="column_left">
-      <h2>OBJECT DATA:</h2>
+      <h2>OBJECTS DATA:</h2>
       <table>
         <tr>
           <td class="title_label">Name: </td>
-          <td>{{test.person.name}}</td>
+          <td>{{testPerson.person.name}}</td>
         </tr>
         <tr>
           <td class="title_label">First surname: </td>
-          <td>{{test.person.surnames.s1}}</td>
+          <td>{{testPerson.person.surnames.s1}}</td>
         </tr>
         <tr>
           <td class="title_label">Second surname: </td>
-          <td>{{test.person.surnames.s2}}</td>
+          <td>{{testPerson.person.surnames.s2}}</td>
         </tr>
         <tr>
           <td class="title_label">Age: </td>
-          <td>{{test.age}}</td>
+          <td>{{testPerson.age}}</td>
         </tr>
         <tr>
           <td class="title_label">Eye color: </td>
-          <td>{{EyesEnum[test.eyes]}}</td>
+          <td>{{EyesEnum[testPerson.eyes]}}</td>
         </tr>
         <tr>
           <td class="title_label">Dominant hand: </td>
-          <td>{{HandsEnum[test.hands]}}</td>
+          <td>{{HandsEnum[testPerson.hands]}}</td>
+        </tr>
+        <tr>
+          <td><label class="title_label">Select object:</label></td>
+          <td><input type="radio" name="selected_object" value=1 (change)="changeForm(1)" checked/></td>
+        </tr>
+      </table>
+      <br>
+      <table>
+        <tr>
+          <td class="title_label">Type of house: </td>
+          <td>{{testHouse.house}}</td>
+        </tr>
+        <tr>
+          <td class="title_label">Windows: </td>
+          <td>{{testHouse.windows}}</td>
+        </tr>
+        <tr>
+          <td class="title_label">Is occupied?: </td>
+          <td>{{testHouse.occupied}}</td>
+        </tr>
+        <tr>
+          <td><label class="title_label">Select object:</label></td>
+          <td><input type="radio" name="selected_object" value=2 (change)="changeForm(2)"/></td>
         </tr>
       </table>
     </div>

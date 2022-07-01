@@ -1,5 +1,4 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component,EventEmitter,Input, OnInit, Output } from '@angular/core'
+import { Component,EventEmitter,Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -14,7 +13,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./ngx-object-properties-editor.component.css','./themes.css']
 })
 
-export class NgxObjectPropertiesEditorComponent implements OnInit {
+export class NgxObjectPropertiesEditorComponent implements OnInit, OnChanges {
   @Input() object: Object | undefined;
   @Input() labels: Map<string, string> | undefined;
   @Input() selects: Map<string,any> | undefined;
@@ -92,7 +91,7 @@ export class NgxObjectPropertiesEditorComponent implements OnInit {
       var property = obj[key]
       
       if (typeof property === "object"){
-        this.createSimpleForm(Object.keys(property), property, group)
+        this.createSimpleForm(Object.getOwnPropertyNames(property), property, group)
       } else {
         group[key] = new FormControl(this.mySimpleObject[key])
       }
@@ -102,32 +101,29 @@ export class NgxObjectPropertiesEditorComponent implements OnInit {
   }
 
   private createSimpleProperties(keys: string[], obj: any) {   
-    
-    keys.forEach(key => {
-      var property = obj[key]
-      
-      if (typeof property === "object"){
-        this.createSimpleProperties(Object.keys(property), property)
-      } else {
-        Object.defineProperty(this.mySimpleObject, key, {value: property});
-      }
-    })
+    if(keys && obj) {
+      keys.forEach(key => {
+        var property = obj[key]
+        
+        if (typeof property === "object"){
+          this.createSimpleProperties(Object.getOwnPropertyNames(property), property)
+        } else {
+          Object.defineProperty(this.mySimpleObject, key, {value: property});
+        }
+      })
+    }
   }
 
   private loadProperties(){
     if(this.object != undefined){
       var group :{[key: string]: any} = {}
-      this.createSimpleProperties(Object.keys(this.object), this.object) 
-      this.createSimpleForm(Object.keys(this.object), this.object, group)
+      this.createSimpleProperties(Object.getOwnPropertyNames(this.object), this.object) 
+      this.createSimpleForm(Object.getOwnPropertyNames(this.mySimpleObject), this.mySimpleObject, group)
     }
 
     if(this.theme == undefined || NgxObjectPropertiesEditorComponent.DEFINED_THEMES.indexOf(this.theme) == -1) {
       this.theme = "light";
     }
-  }
-
-  ngOnInit(): void { 
-    this.loadProperties()
   }
 
   onChange(key: any){
@@ -137,5 +133,17 @@ export class NgxObjectPropertiesEditorComponent implements OnInit {
 
     console.log(this.object)
     this.onObjectUpdated.emit(this.object)
+  }
+
+  ngOnInit(): void { 
+    this.loadProperties()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes["object"] && this.object && changes["object"]["previousValue"] != this.object){
+      this.simpleForm = this.fb.group({});
+      this.mySimpleObject = new Object();
+      this.loadProperties();
+    } 
   }
 } 
