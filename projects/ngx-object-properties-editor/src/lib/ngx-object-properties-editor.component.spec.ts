@@ -1,3 +1,4 @@
+import { not } from '@angular/compiler/src/output/output_ast';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -18,10 +19,11 @@ describe('NgxObjectPropertiesEditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NgxObjectPropertiesEditorComponent);
     component = fixture.componentInstance;
+
     enum trabajo {"jornada-completa", "media-jornada", "paro", "estudiante"} 
     enum color_ojos {"azul","marron","verde","negros","grises","pardos","miel"}  
     component.selects = new Map().set("trabajo",trabajo).set("ojos", color_ojos)
-    component.object = {Persona: {nombre:"Raquel", apellidos: {ap1: "Ortega", ap2: "Perez"}}, bloqueado: false, trabajo: trabajo.estudiante, ojos: color_ojos.marron}
+    component.object = {Persona: {nombre:"Raquel", apellidos: {ap1: "Ortega", ap2: "Perez"}}, bloqueado: false, trabajo: trabajo.estudiante, ojos: color_ojos.marron, edad: 22}
     fixture.detectChanges();
   });
 
@@ -39,7 +41,7 @@ describe('NgxObjectPropertiesEditorComponent', () => {
 
     expect(elements[0].textContent).toContain('Nombre:');
     expect(elements[1].textContent).toContain('Primer Apellido:');
-    expect(elements[2].textContent).toContain('ap2:');
+    expect(elements[2].textContent).toContain('Ap2:');
   });
 
   it('should not render title', () => {
@@ -58,7 +60,15 @@ describe('NgxObjectPropertiesEditorComponent', () => {
 
   it('should render bool component when bool attribute', () => {
     const compiled = fixture.nativeElement as HTMLElement;   
-    expect(compiled.querySelector('lib-bool-printer')).toBeTruthy();;
+    expect(compiled.querySelector('lib-bool-printer')).toBeTruthy();
+  });
+
+  it('should render numeric and text inputs', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    var elements = compiled.querySelectorAll('input');
+    expect(elements[3].type).toBe('number');
+    expect(elements[1].type).toBe('text');
   });
 
   it('should render enum component when enum attribute', () => {
@@ -88,5 +98,40 @@ describe('NgxObjectPropertiesEditorComponent', () => {
     
     expect(realValue).toBe("Nuevo nombre")
   });
+
+  it('should hide indicated property', () => {
+    var hidden = ["nombre", "edad", "hola"]
+    component.hidden = hidden
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    
+    expect(compiled.innerHTML).not.toContain('Nombre:');
+    expect(compiled.innerHTML).not.toContain('Edad:');
+  })
+
+  it('should use light theme', () => {
+    let lightLabelColor = "rgb(32, 33, 36)";
+    const compiled = fixture.nativeElement as HTMLElement;   
+    var elements = compiled.querySelectorAll('label'); 
+    expect(getComputedStyle(elements[0]).color).toBe(lightLabelColor);
+  })
+
+  it('should use dark theme', () => {
+    component.theme = "dark"
+    fixture.detectChanges()
+    let darkLabelColor = "rgb(254, 254, 254)";
+    const compiled = fixture.nativeElement as HTMLElement;   
+    var elements = compiled.querySelectorAll('label'); 
+    expect(getComputedStyle(elements[0]).color).toBe(darkLabelColor);
+  })
+
+  it('should use custom theme', () => {
+    component.theme = "custom";
+    fixture.detectChanges()
+    let lightLabelColor = "rgb(32, 33, 36)";
+    const compiled = fixture.nativeElement as HTMLElement;   
+    var elements = compiled.querySelectorAll('label'); 
+    expect(getComputedStyle(elements[0]).color).not.toBe(lightLabelColor);
+  })
 
 });

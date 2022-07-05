@@ -2,7 +2,7 @@
     <h2 id="title" *ngIf="title != undefined">{{title}}</h2>
     <form id="dynamicForm" [formGroup]="simpleForm">
         <div class="input_container" *ngFor="let form_elem of getElems()">
-            <div *ngIf="!isHidden(form_elem)">
+            <div *ngIf="!isHidden(form_elem) && !isNull(form_elem)">
                 <label>{{getLabel(form_elem)}}:</label>
                 <div class="margin_input" [ngSwitch]="getType(form_elem)">
                     <div *ngSwitchCase="'string'">

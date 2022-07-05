@@ -24,8 +24,7 @@ export class NgxObjectPropertiesEditorComponent implements OnInit, OnChanges {
 
   static DEFINED_THEMES = ["light", "dark", "muret", "custom"];
  
-  mySimpleObject:any = new Object();
-  subelements : number = 0
+  private mySimpleObject:any = new Object();
   simpleForm: FormGroup = this.fb.group({});
   
   constructor(private fb: FormBuilder) { }
@@ -53,6 +52,10 @@ export class NgxObjectPropertiesEditorComponent implements OnInit, OnChanges {
     return (this.hidden != undefined && this.hidden.indexOf(key) > -1)
   }
 
+  isNull(key: string){
+    return (this.mySimpleObject[key] == undefined || this.mySimpleObject[key] == null)
+  }
+
   getLabel(key: string){
     if(this.labels != undefined && this.labels.get(key) != undefined){
       return this.labels.get(key)
@@ -60,7 +63,7 @@ export class NgxObjectPropertiesEditorComponent implements OnInit, OnChanges {
     return this.firstCapitalLetter(key)
   }
 
-  firstCapitalLetter(word: string) {
+  private firstCapitalLetter(word: string) {
     if (!word) return word;
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
@@ -89,8 +92,10 @@ export class NgxObjectPropertiesEditorComponent implements OnInit, OnChanges {
   private createSimpleForm(keys: string[], obj: any, group: {[key: string]: any}){   
     keys.forEach(key => {
       var property = obj[key]
-      
-      if (typeof property === "object"){
+      if(property == null || property == undefined){
+        group[key] = new FormControl(this.mySimpleObject[key])
+      }
+      else if (typeof property === "object"){
         this.createSimpleForm(Object.getOwnPropertyNames(property), property, group)
       } else {
         group[key] = new FormControl(this.mySimpleObject[key])
@@ -100,12 +105,15 @@ export class NgxObjectPropertiesEditorComponent implements OnInit, OnChanges {
     this.simpleForm = this.fb.group(group)
   }
 
-  private createSimpleProperties(keys: string[], obj: any) {   
+  private createSimpleProperties(keys: string[], obj: any) {  
     if(keys && obj) {
       keys.forEach(key => {
         var property = obj[key]
         
-        if (typeof property === "object"){
+        if(property == null || property == undefined){
+          Object.defineProperty(this.mySimpleObject, key, {value: property});
+        }
+        else if (typeof property == "object"){
           this.createSimpleProperties(Object.getOwnPropertyNames(property), property)
         } else {
           Object.defineProperty(this.mySimpleObject, key, {value: property});
@@ -126,7 +134,7 @@ export class NgxObjectPropertiesEditorComponent implements OnInit, OnChanges {
     }
   }
 
-  onChange(key: any){
+  onChange(key: string){
     if(this.object != undefined) {
       this.updateObject(Object.keys(this.object), this.object, key)
     }

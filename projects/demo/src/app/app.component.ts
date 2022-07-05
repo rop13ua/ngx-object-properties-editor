@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   generateObject(obj: number){
     if(obj == 1){
-      this.testPerson = {person: {name:"Raquel", surnames: {s1: "Ortega", s2: "Pérez"}}, age: 22, eyes: this.EyesEnum['Dark brown'], hands: this.HandsEnum['Right-handed']}
+      this.testPerson = {person: {name: "Raquel", surnames: {s1: "Ortega", s2: "Pérez"}}, age: 22, eyes: this.EyesEnum['Dark brown'], hands: this.HandsEnum['Right-handed']}
     
       this.enums = new Map().set("eyes",eyesEnum).set("hands", handEnum)
 
