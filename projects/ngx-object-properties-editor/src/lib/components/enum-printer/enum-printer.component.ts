@@ -18,21 +18,21 @@ export class EnumPrinterComponent implements OnInit {
   constructor(private formGroupDirective: FormGroupDirective) { }
 
   ngOnInit(): void {
-    if(this.form_elem != undefined){
+    if(this.form_elem){
       this.formControl = this.formGroupDirective.form.get(this.form_elem) as FormControl;
     }
 
-    if(this.select != undefined){
+    if(this.select){
       this.names = this.select.slice(this.select.length/2)
     }
   }
 
   isSmall(){
-    return (this.select != undefined && this.names.length < 5)
+    return (this.select && this.names.length < 5)
   }
 
   getEnum(){
-    if(this.select != undefined){
+    if(this.select){
       return this.names
     }
     else  {
@@ -41,7 +41,7 @@ export class EnumPrinterComponent implements OnInit {
   }
   
   getNumericValue(key:any){
-    if(this.select != undefined){
+    if(this.select){
       return this.names.indexOf(key)
     }
     return undefined

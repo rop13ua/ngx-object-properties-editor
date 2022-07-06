@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
-import { eyesEnum, handEnum } from './enums';
+import { eyesEnum, handEnum, Accidental } from './enums';
 
 @Component({
   selector: 'app-root',
@@ -35,11 +35,11 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   generateObject(obj: number){
     if(obj == 1){
-      this.testPerson = {person: {name:"Raquel", surnames: {s1: "Ortega", s2: "Pérez"}}, age: 22, eyes: this.EyesEnum['Dark brown'], hands: this.HandsEnum['Right-handed']}
+      this.testPerson = {person: {name: "Raquel", surnames: {s1: "Ortega", s2: "Pérez"}}, age: 22, eyes: this.EyesEnum['Dark brown'], hands: this.HandsEnum['Right-handed']}
     
       this.enums = new Map().set("eyes",eyesEnum).set("hands", handEnum)
 
-      this.hidden = ["hands"];
+      //this.hidden = ["hands"];
 
       this.labels = new Map().set("name", "Name")
                             .set("s1", "First surname")
@@ -47,6 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit{
                             .set("age", "Age")
                             .set("eyes", "Eye color")
                             .set("hands", "Dominant hand")
+
     }
     else if (obj == 2){
       this.testHouse = {house: "Bungalow", windows: 5, occupied: true}
